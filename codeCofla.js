@@ -8,16 +8,18 @@ function crearLlave (nombre, modelo, precio) {
     return [img, nombre, modelo, precio];
 }
 
-let div = document.createElement("div");
-div.classList.add("flex-item");
+let documentFragment = document.createDocumentFragment();
 
-for (var i = 0; i < 20; i++) {
-    let modeloRandoom = Math.random()*10000;
-    let precionRandom = Math.random()*10+30;
+for (var i = 1; i <= 20; i++) {
+    let modeloRandoom = Math.round(Math.random()*10000);
+    let precionRandom = Math.round(Math.random()*10+30);
     let llave = crearLlave(`Llave: ${i}`, `modelo: #${modeloRandoom}`, `Precio: $${precionRandom}`);
     let div = document.createElement("div");
     div.classList.add(`item-${i}`, `flex-item$`);
-    div.innerHTML = llave;
+    div.innerHTML = llave[0] + llave[1] + llave[2] + llave[3];
     container.innerHTML += llave;
+    documentFragment.appendChild(div);
 }
+
+container.appendChild(documentFragment)
 
